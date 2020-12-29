@@ -314,6 +314,12 @@ function getSheet(auth, id, sheetname) {
             // console.log(upload);
             if (upload.status == "error") {
               console.log(upload.error);
+              if (upload.error.reason == "quotaExceeded") {
+                console.log(
+                  "Quota Exceeded, Waiting 10 seconds to restart ...."
+                );
+                setTimeout(refresh, 10000);
+              }
             } else if (upload.status == "completed") {
               console.log("upload Completed");
               if (element.thumbnail !== undefined) {
@@ -566,7 +572,7 @@ async function uploadVideo(auth, data, videopath) {
           // console.log(err);
           res({
             status: "error",
-            error: err,
+            error: err.response.data.error.errors[0],
           });
         } else {
           // console.log(response.data);
