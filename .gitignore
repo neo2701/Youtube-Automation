@@ -1,0 +1,5 @@
+node_modules/
+credentials/
+uploads/
+/.env
+client_secret.json
