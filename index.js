@@ -8,6 +8,7 @@ const { writer } = require("repl");
 const gmail = require("./gmail");
 const util = require("util");
 const ProgressBar = require("progress");
+const { exit } = require("process");
 require("dotenv").config();
 var OAuth2 = google.auth.OAuth2;
 var youtube = google.youtube("v3");
@@ -333,43 +334,44 @@ function getSheet(auth, id, sheetname) {
                   ).then(async (response) => {
                     if (response.status == "error") {
                       console.log(response.error);
+                      exit;
                     } else {
                       // console.log(response.data);
                       console.log("Thumbnail successfuly set");
-                      await setvideoUploaded(auth, element.row).then(
-                        async (response) => {
-                          if (response.status == "error") {
-                            console.log(response.error);
-                          } else {
-                            console.log(response.data);
-                            await gmail
-                              .send(auth, element, upload.data)
-                              .then(async (response) => {
-                                console.log(response.status);
-                                if (response.status == "error") {
-                                  console.log(
-                                    util.inspect(response.error, {
-                                      showHidden: false,
-                                      depth: null,
-                                    })
-                                  );
-                                } else {
-                                  console.log(
-                                    util.inspect(response.data, {
-                                      showHidden: false,
-                                      depth: null,
-                                    })
-                                  );
-                                  setTimeout(refresh, 5000);
-                                }
-                              });
-                          }
-                        }
-                      );
                     }
                   });
                 }
               }
+              await setvideoUploaded(auth, element.row).then(
+                async (response) => {
+                  if (response.status == "error") {
+                    console.log(response.error);
+                  } else {
+                    console.log(response.data);
+                    await gmail
+                      .send(auth, element, upload.data)
+                      .then(async (response) => {
+                        console.log(response.status);
+                        if (response.status == "error") {
+                          console.log(
+                            util.inspect(response.error, {
+                              showHidden: false,
+                              depth: null,
+                            })
+                          );
+                        } else {
+                          console.log(
+                            util.inspect(response.data, {
+                              showHidden: false,
+                              depth: null,
+                            })
+                          );
+                          setTimeout(refresh, 5000);
+                        }
+                      });
+                  }
+                }
+              );
             }
           } else if (video.status == "error") {
             console.log(video.error);
