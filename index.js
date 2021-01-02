@@ -595,7 +595,7 @@ async function setvideoUploaded(auth, row) {
       {
         auth: auth,
         spreadsheetId: process.env.GOOGLE_SHEETS_SPREADSHEETS_ID,
-        range: "Form responses 1!H" + row,
+        range: "Form responses 1!I" + row,
         valueInputOption: "USER_ENTERED",
         resource: {
           values: [["yes"]],
