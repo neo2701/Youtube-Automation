@@ -188,7 +188,7 @@ function setThumbnail(auth, id, img) {
         if (err) {
           res({
             status: "error",
-            error: error,
+            error: err,
           });
         } else {
           console.log(response.data);
