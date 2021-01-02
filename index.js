@@ -226,7 +226,8 @@ function getSheet(auth, id, sheetname) {
           var tags = element[4];
           var videolink = element[5];
           var thumbnail = element[6];
-          var uploaded = element[7];
+          var verification = element[7];
+          var uploaded = element[8];
 
           json.push({
             row: i++,
@@ -616,4 +617,10 @@ async function setvideoUploaded(auth, row) {
       }
     );
   });
+}
+
+function getFilesize(filename) {
+  var stats = fs.statSync(filename);
+  var fileSizeInBytes = stats.size;
+  return fileSizeInBytes;
 }
