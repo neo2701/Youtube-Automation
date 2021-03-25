@@ -269,90 +269,90 @@ function getSheet(auth, id, sheetname) {
           let video = await downloadVideo(element);
           if (video.status == "finished") {
             var videopath = video.filepath;
-            // let upload = await uploadVideo(auth, element, videopath);
-            let upload = {
-              status: "completed",
-              data: {
-                kind: "youtube#video",
-                etag: "_qNtYBB8HMfQN6LRaLBofazzCUA",
-                id: "WgBTWYDz5wg",
-                snippet: {
-                  publishedAt: "2021-03-25T13:05:01Z",
-                  channelId: "UCTa9Vv3GM1kjWLAJpMiaAFQ",
-                  title: "Test Video For Uploading Automatically",
-                  description:
-                    "Test Video For Uploading Automatically\n" +
-                    "Test Video For Uploading Automatically\n" +
-                    "Test Video For Uploading Automatically\n" +
-                    "Test Video For Uploading Automatically",
-                  thumbnails: {
-                    default: {
-                      url: "https://i.ytimg.com/vi/WgBTWYDz5wg/default.jpg",
-                      width: 120,
-                      height: 90,
-                    },
-                    medium: {
-                      url: "https://i.ytimg.com/vi/WgBTWYDz5wg/mqdefault.jpg",
-                      width: 320,
-                      height: 180,
-                    },
-                    high: {
-                      url: "https://i.ytimg.com/vi/WgBTWYDz5wg/hqdefault.jpg",
-                      width: 480,
-                      height: 360,
-                    },
-                    standard: {
-                      url: "https://i.ytimg.com/vi/WgBTWYDz5wg/sddefault.jpg",
-                      width: 640,
-                      height: 480,
-                    },
-                    maxres: {
-                      url:
-                        "https://i.ytimg.com/vi/WgBTWYDz5wg/maxresdefault.jpg",
-                      width: 1280,
-                      height: 720,
-                    },
-                  },
-                  channelTitle: "GKJW Jemaat Rungkut",
-                  categoryId: "29",
-                  liveBroadcastContent: "none",
-                  localized: {
-                    title: "Test Video For Uploading Automatically",
-                    description:
-                      "Test Video For Uploading Automatically\n" +
-                      "Test Video For Uploading Automatically\n" +
-                      "Test Video For Uploading Automatically\n" +
-                      "Test Video For Uploading Automatically",
-                  },
-                },
-                contentDetails: {
-                  duration: "PT11S",
-                  dimension: "2d",
-                  definition: "hd",
-                  caption: "false",
-                  licensedContent: false,
-                  contentRating: {},
-                  projection: "rectangular",
-                  hasCustomThumbnail: false,
-                },
-                status: {
-                  uploadStatus: "processed",
-                  privacyStatus: "unlisted",
-                  license: "youtube",
-                  embeddable: true,
-                  publicStatsViewable: true,
-                  madeForKids: false,
-                  selfDeclaredMadeForKids: false,
-                },
-                statistics: {
-                  viewCount: "0",
-                  likeCount: "0",
-                  dislikeCount: "0",
-                  favoriteCount: "0",
-                  commentCount: "0",
-                },
-              },
-            };
+            let upload = await uploadVideo(auth, element, videopath);
+            // let upload = {
+            //   status: "completed",
+            //   data: {
+            //     kind: "youtube#video",
+            //     etag: "_qNtYBB8HMfQN6LRaLBofazzCUA",
+            //     id: "WgBTWYDz5wg",
+            //     snippet: {
+            //       publishedAt: "2021-03-25T13:05:01Z",
+            //       channelId: "UCTa9Vv3GM1kjWLAJpMiaAFQ",
+            //       title: "Test Video For Uploading Automatically",
+            //       description:
+            //         "Test Video For Uploading Automatically\n" +
+            //         "Test Video For Uploading Automatically\n" +
+            //         "Test Video For Uploading Automatically\n" +
+            //         "Test Video For Uploading Automatically",
+            //       thumbnails: {
+            //         default: {
+            //           url: "https://i.ytimg.com/vi/WgBTWYDz5wg/default.jpg",
+            //           width: 120,
+            //           height: 90,
+            //         },
+            //         medium: {
+            //           url: "https://i.ytimg.com/vi/WgBTWYDz5wg/mqdefault.jpg",
+            //           width: 320,
+            //           height: 180,
+            //         },
+            //         high: {
+            //           url: "https://i.ytimg.com/vi/WgBTWYDz5wg/hqdefault.jpg",
+            //           width: 480,
+            //           height: 360,
+            //         },
+            //         standard: {
+            //           url: "https://i.ytimg.com/vi/WgBTWYDz5wg/sddefault.jpg",
+            //           width: 640,
+            //           height: 480,
+            //         },
+            //         maxres: {
+            //           url:
+            //             "https://i.ytimg.com/vi/WgBTWYDz5wg/maxresdefault.jpg",
+            //           width: 1280,
+            //           height: 720,
+            //         },
+            //       },
+            //       channelTitle: "GKJW Jemaat Rungkut",
+            //       categoryId: "29",
+            //       liveBroadcastContent: "none",
+            //       localized: {
+            //         title: "Test Video For Uploading Automatically",
+            //         description:
+            //           "Test Video For Uploading Automatically\n" +
+            //           "Test Video For Uploading Automatically\n" +
+            //           "Test Video For Uploading Automatically\n" +
+            //           "Test Video For Uploading Automatically",
+            //       },
+            //     },
+            //     contentDetails: {
+            //       duration: "PT11S",
+            //       dimension: "2d",
+            //       definition: "hd",
+            //       caption: "false",
+            //       licensedContent: false,
+            //       contentRating: {},
+            //       projection: "rectangular",
+            //       hasCustomThumbnail: false,
+            //     },
+            //     status: {
+            //       uploadStatus: "processed",
+            //       privacyStatus: "unlisted",
+            //       license: "youtube",
+            //       embeddable: true,
+            //       publicStatsViewable: true,
+            //       madeForKids: false,
+            //       selfDeclaredMadeForKids: false,
+            //     },
+            //     statistics: {
+            //       viewCount: "0",
+            //       likeCount: "0",
+            //       dislikeCount: "0",
+            //       favoriteCount: "0",
+            //       commentCount: "0",
+            //     },
+            //   },
+            // };
             // console.log(upload);
             if (upload.status == "error") {
               console.log(upload.error);
