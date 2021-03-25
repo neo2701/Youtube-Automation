@@ -10,6 +10,7 @@ const util = require("util");
 const ProgressBar = require("progress");
 const { exit } = require("process");
 const { default: base64url } = require("base64url");
+const keepAlive = require("./server");
 require("dotenv").config();
 var OAuth2 = google.auth.OAuth2;
 var youtube = google.youtube("v3");
@@ -26,6 +27,7 @@ var TOKEN_DIR = "credentials/";
 var TOKEN_PATH = TOKEN_DIR + "youtube-automation.json";
 
 // Load client secrets from a local file.
+keepAlive();
 fs.readFile(
   "client_secret.json",
   async function processClientSecrets(err, content) {
@@ -267,54 +269,90 @@ function getSheet(auth, id, sheetname) {
           let video = await downloadVideo(element);
           if (video.status == "finished") {
             var videopath = video.filepath;
-            let upload = await uploadVideo(auth, element, videopath);
-            // let upload = {
-            //   status: "completed",
-            //   data: {
-            //     kind: "youtube#video",
-            //     etag: "2VuafN12z-ZpRgyTl5E1XnKxhSA",
-            //     id: "R4Q9lFF3GWc",
-            //     snippet: {
-            //       publishedAt: "2020-12-29T04:49:32Z",
-            //       channelId: "UCTa9Vv3GM1kjWLAJpMiaAFQ",
-            //       title: "Test Upload",
-            //       description: "Upload Test Standar Multimed...Unlisted ya",
-            //       thumbnails: {
-            //         default: {
-            //           url: "https://i.ytimg.com/vi/R4Q9lFF3GWc/default.jpg",
-            //           width: 120,
-            //           height: 90,
-            //         },
-            //         medium: {
-            //           url: "https://i.ytimg.com/vi/R4Q9lFF3GWc/mqdefault.jpg",
-            //           width: 320,
-            //           height: 180,
-            //         },
-            //         high: {
-            //           url: "https://i.ytimg.com/vi/R4Q9lFF3GWc/hqdefault.jpg",
-            //           width: 480,
-            //           height: 360,
-            //         },
-            //       },
-            //       channelTitle: "GKJW Jemaat Rungkut",
-            //       tags: ["#TestUpload", "#TestSaja"],
-            //       categoryId: "29",
-            //       liveBroadcastContent: "none",
-            //       localized: {
-            //         title: "Test Upload",
-            //         description: "Upload Test Standar Multimed...Unlisted ya",
-            //       },
-            //     },
-            //     status: {
-            //       uploadStatus: "uploaded",
-            //       privacyStatus: "unlisted",
-            //       license: "youtube",
-            //       embeddable: true,
-            //       publicStatsViewable: true,
-            //       selfDeclaredMadeForKids: false,
-            //     },
-            //   },
-            // };
+            // let upload = await uploadVideo(auth, element, videopath);
+            let upload = {
+              status: "completed",
+              data: {
+                kind: "youtube#video",
+                etag: "_qNtYBB8HMfQN6LRaLBofazzCUA",
+                id: "WgBTWYDz5wg",
+                snippet: {
+                  publishedAt: "2021-03-25T13:05:01Z",
+                  channelId: "UCTa9Vv3GM1kjWLAJpMiaAFQ",
+                  title: "Test Video For Uploading Automatically",
+                  description:
+                    "Test Video For Uploading Automatically\n" +
+                    "Test Video For Uploading Automatically\n" +
+                    "Test Video For Uploading Automatically\n" +
+                    "Test Video For Uploading Automatically",
+                  thumbnails: {
+                    default: {
+                      url: "https://i.ytimg.com/vi/WgBTWYDz5wg/default.jpg",
+                      width: 120,
+                      height: 90,
+                    },
+                    medium: {
+                      url: "https://i.ytimg.com/vi/WgBTWYDz5wg/mqdefault.jpg",
+                      width: 320,
+                      height: 180,
+                    },
+                    high: {
+                      url: "https://i.ytimg.com/vi/WgBTWYDz5wg/hqdefault.jpg",
+                      width: 480,
+                      height: 360,
+                    },
+                    standard: {
+                      url: "https://i.ytimg.com/vi/WgBTWYDz5wg/sddefault.jpg",
+                      width: 640,
+                      height: 480,
+                    },
+                    maxres: {
+                      url:
+                        "https://i.ytimg.com/vi/WgBTWYDz5wg/maxresdefault.jpg",
+                      width: 1280,
+                      height: 720,
+                    },
+                  },
+                  channelTitle: "GKJW Jemaat Rungkut",
+                  categoryId: "29",
+                  liveBroadcastContent: "none",
+                  localized: {
+                    title: "Test Video For Uploading Automatically",
+                    description:
+                      "Test Video For Uploading Automatically\n" +
+                      "Test Video For Uploading Automatically\n" +
+                      "Test Video For Uploading Automatically\n" +
+                      "Test Video For Uploading Automatically",
+                  },
+                },
+                contentDetails: {
+                  duration: "PT11S",
+                  dimension: "2d",
+                  definition: "hd",
+                  caption: "false",
+                  licensedContent: false,
+                  contentRating: {},
+                  projection: "rectangular",
+                  hasCustomThumbnail: false,
+                },
+                status: {
+                  uploadStatus: "processed",
+                  privacyStatus: "unlisted",
+                  license: "youtube",
+                  embeddable: true,
+                  publicStatsViewable: true,
+                  madeForKids: false,
+                  selfDeclaredMadeForKids: false,
+                },
+                statistics: {
+                  viewCount: "0",
+                  likeCount: "0",
+                  dislikeCount: "0",
+                  favoriteCount: "0",
+                  commentCount: "0",
+                },
+              },
+            };
             // console.log(upload);
             if (upload.status == "error") {
               console.log(upload.error);

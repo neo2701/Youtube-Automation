@@ -30,6 +30,14 @@ module.exports = {
         },
       });
 
+      const emailOptions = {
+        from:
+          "Multimedia GKJW Jemaat Rungkut <multimediagkjwrungkut@gmail.com>",
+        to: element.email,
+        cc: "mikhawardhana@gmail.com",
+        subject: "Youtube Automation Upload API",
+      };
+
       const mailOptions = {
         from:
           "Multimedia GKJW Jemaat Rungkut <multimediagkjwrungkut@gmail.com>",
