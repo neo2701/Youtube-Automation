@@ -328,6 +328,7 @@ function getSheet(auth, id, sheetname) {
               console.log("upload Completed");
               if (element.thumbnail !== undefined && element.thumbnail !== "") {
                 console.log("thumbnail defined");
+                console.log(element.thumbnail);
                 let thumbnail = await downloadThumbnail(element);
                 if (thumbnail.status == "finished") {
                   await setThumbnail(
@@ -539,7 +540,7 @@ async function getDirectLink(link) {
       return response.data.name;
     })
     .catch((e) => {
-      console.log(e.response.data.error.errors);
+      console.log(e.response.data);
     });
   // console.log(filename);
   var data = {
